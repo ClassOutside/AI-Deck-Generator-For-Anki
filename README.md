@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/5ea763c9-950f-4cce-a5fb-9902a3a5f286" alt="Class-Outside Logo" width="200" style="border-radius: 50%;" />
+  <img src="https://github.com/user-attachments/assets/5ea763c9-950f-4cce-a5fb-9902a3a5f286" alt="Deck Generator Logo" width="200" style="border-radius: 50%;" />
 </p>
 
 <h1 align="center">AI Deck Generator for Anki</h1>
@@ -59,7 +59,7 @@
 <h2 align="center">Class Outside</h2>
 
 <p align="center">
-  ☕️ Do you like my work? Consider leaving a tip or supporting me through <a href="https://ko-fi.com/yourusername" target="_blank">Ko-fi</a>.
+  ☕️ Do you like my work? Consider leaving a tip or supporting me through <a href="https://ko-fi.com/classoutside" target="_blank">Ko-fi</a>.
 </p>
 
 ---
@@ -83,7 +83,9 @@ The result is an organized Anki deck that can be directly imported into the Anki
 - The deck is broken up into two sections, Japanese to English, and English to Japanese. 
 - Both sections include note cards for full sentences, words, and kanji.
 
-![Screenshot Anki Deck2](https://github.com/user-attachments/assets/53290191-ed52-4a8f-ab59-67c5a353f060)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/53290191-ed52-4a8f-ab59-67c5a353f060" alt="Anki Deck Structure" width="200" style="border-radius: 50%;" />
+</p>
 
 ---
 
@@ -99,12 +101,18 @@ The result is an organized Anki deck that can be directly imported into the Anki
 EX: Japanese to English, Front Side
 - Kanji
 - mp3 audio example
-![Screenshot Japanese to English Front](https://github.com/user-attachments/assets/0b6d80b4-4151-499c-acba-c55c42234934)
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/0b6d80b4-4151-499c-acba-c55c42234934" alt="Card Front Format" width="200" style="border-radius: 50%;" />
+</p>
 
 EX: Japanese to English, Back Side
 - English Translation
 - Romaji pronunciation
-![Screenshot Japanese to English Back](https://github.com/user-attachments/assets/d11e0786-fec1-44f9-b071-de6888273db5)
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/d11e0786-fec1-44f9-b071-de6888273db5" alt="Card Front Format" width="200" style="border-radius: 50%;" />
+</p>
 
 ---
 
