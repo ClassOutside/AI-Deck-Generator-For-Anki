@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/94439538-3f6b-42fb-bc98-ca9a6f173d54" alt="Class-Outside Logo" width="200" style="border-radius: 50%;" />
+  <img src="https://github.com/user-attachments/assets/5ea763c9-950f-4cce-a5fb-9902a3a5f286" alt="Class-Outside Logo" width="200" style="border-radius: 50%;" />
 </p>
 
 <h1 align="center">AI Deck Generator for Anki</h1>
