@@ -1,0 +1,10 @@
+  pyinstaller --clean --onedir --windowed --name "Anki Deck Generator" --icon icons/icon.png `
+  --add-data "settings.py;." `
+  --add-data "icons;icons" `
+  --add-data "anki_style.txt;." `
+  --add-data "prompt.txt;." `
+  --add-data "services;services" `
+  --add-data "READme.txt;." `
+  --add-data "keys.py;." `
+  --add-data "TERMS_AND_CONDITIONS.txt;." `
+  main.py

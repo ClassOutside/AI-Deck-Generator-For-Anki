@@ -1,0 +1,19 @@
+LEGAL TERMS AND CONDITIONS
+
+No Warranty:
+This software is provided "AS IS", without warranties of any kind, express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, or non-infringement.
+
+User Responsibility for Costs:
+You acknowledge and agree that you are solely responsible for all costs, fees, and charges incurred through your use of this software, including any charges associated with API key usage and related billing from third-party services.
+
+Limitation of Liability:
+The developer shall not be liable for any direct, indirect, incidental, special, consequential, or punitive damages, or any damages whatsoever, including but not limited to loss of profits, data, or use, arising out of or in connection with the use or inability to use this software, even if advised of the possibility of such damages.
+
+API Key Security:
+You are solely responsible for maintaining the security and confidentiality of your API keys. The developer is not responsible for any unauthorized access, use, or theft of API keys stored locally or otherwise through this software, including any damages or losses that may result.
+
+Compliance with Third-Party Terms:
+You agree to use this software and your API keys in compliance with all applicable terms, conditions, and policies of the third-party services associated with your API keys.
+
+Acceptance of Terms:
+By downloading, installing, or using this software, you acknowledge that you have read, understood, and agreed to these terms and conditions. If you do not agree to these terms, do not use this software.
