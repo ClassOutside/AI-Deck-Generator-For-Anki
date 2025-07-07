@@ -84,7 +84,7 @@ The result is an organized Anki deck that can be directly imported into the Anki
 - Both sections include note cards for full sentences, words, and kanji.
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/53290191-ed52-4a8f-ab59-67c5a353f060" alt="Anki Deck Structure" width="200" style="border-radius: 50%;" />
+  <img src="https://github.com/user-attachments/assets/53290191-ed52-4a8f-ab59-67c5a353f060" alt="Anki Deck Structure" width="400" style="border-radius: 50%;" />
 </p>
 
 ---
