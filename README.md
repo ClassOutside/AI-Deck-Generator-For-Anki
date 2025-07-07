@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="/icons/icon.png" alt="App Icon" width="150"/>
+  <img src="https://github.com/user-attachments/assets/94439538-3f6b-42fb-bc98-ca9a6f173d54" alt="Class-Outside Logo" width="200" style="border-radius: 50%;" />
 </p>
 
 <h1 align="center">AI Deck Generator for Anki</h1>
@@ -17,6 +17,50 @@
 - **Translation Accuracy:** This tool uses AI to generate translations. While often accurate, AI‑generated content may occasionally include errors, mistranslations, or unexpected results.
 
 - **Audio Output Accuracy:** If audio generation is used, please note that pronunciation accuracy may vary. In Japanese, many kanji have multiple possible readings depending on context. The tools used may not always select the correct pronunciation or may introduce errors during synthesis.
+
+---
+
+## Steps to Run Locally
+
+🎥 **Video Tutorial (Coming Soon):** [Watch on YouTube]()
+
+1. **Download and prepare VOICEVOX** 
+
+2. **Download and unzip the AI Deck Generator for Anki**  
+
+3. **Run the executable (`.exe`) file**  
+
+4. **Read the Terms and Conditions**  
+
+5. **If you agree, proceed to the settings menu**
+   - **5a.** Select an output directory  
+   - **5b.** Select the location of the VOICEVOX executable  
+   - **5c.** Input your OpenAI API key  
+   - **5d.** Create a PIN – this will be required to initiate deck generation. API calls will not be made without the correct PIN.
+
+6. **Exit the application**, then run the `.exe` again for the changes to take effect.
+
+7. **Fill in the fields for translation**
+   - **7a.** Provide your PIN  
+   - **7b.** Title your Anki deck  
+   - **7c.** Input the Japanese text you want translated
+
+8. **Click the “Generate” button**  
+   - The application will process the input, generate translations, and build the Anki deck.
+
+9. **Import into Anki**
+
+---
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/0245c54a-e883-4317-8d6e-5c7243b2fa72" alt="Class-Outside Logo" width="200" style="border-radius: 50%;" />
+</p>
+
+<h2 align="center">Class Outside</h2>
+
+<p align="center">
+  ☕️ Do you like my work? Consider leaving a tip or supporting me through <a href="https://ko-fi.com/yourusername" target="_blank">Ko-fi</a>.
+</p>
 
 ---
 
@@ -115,51 +159,6 @@ To roughly estimate the cost of using this tool with your text:
 > ⚠️ Please note: Token counts and output length may vary from test runs due to changes in model behavior or structure. Estimates are not guarantees.
 
 ---
-
-## Steps to Run Locally
-
-🎥 **Video Tutorial (Coming Soon):** [Watch on YouTube]()
-
-1. **Download and prepare VOICEVOX** 
-
-2. **Download and unzip the AI Deck Generator for Anki**  
-
-3. **Run the executable (`.exe`) file**  
-
-4. **Read the Terms and Conditions**  
-
-5. **If you agree, proceed to the settings menu**
-   - **5a.** Select an output directory  
-   - **5b.** Select the location of the VOICEVOX executable  
-   - **5c.** Input your OpenAI API key  
-   - **5d.** Create a PIN – this will be required to initiate deck generation. API calls will not be made without the correct PIN.
-
-6. **Exit the application**, then run the `.exe` again for the changes to take effect.
-
-7. **Fill in the fields for translation**
-   - **7a.** Provide your PIN  
-   - **7b.** Title your Anki deck  
-   - **7c.** Input the Japanese text you want translated
-
-8. **Click the “Generate” button**  
-   - The application will process the input, generate translations, and build the Anki deck.
-
-9. **Import into Anki**
-
----
-
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/0245c54a-e883-4317-8d6e-5c7243b2fa72" alt="Class-Outside Logo" width="200" style="border-radius: 50%;" />
-</p>
-
-<h2 align="center">Class Outside</h2>
-
-<p align="center">
-  ☕️ Do you like my work? Consider leaving a tip or supporting me through <a href="https://ko-fi.com/yourusername" target="_blank">Ko-fi</a>.
-</p>
-
----
-
 
 ## Affiliations
 
