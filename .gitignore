@@ -1,0 +1,22 @@
+# Ignore virtual environment folder (change '.venv/' if yours is named differently)
+.venv/
+
+# Ignore Python bytecode cache
+__pycache__/
+
+# Ignore Git attributes file
+.gitattributes
+
+# Ignore Python version file (e.g., used by pyenv)
+.python-version
+
+# Ignore API keys file
+keys.py
+
+engine/
+
+dist/
+
+build/
+
+debugging/
