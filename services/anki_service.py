@@ -1,15 +1,22 @@
-import openai
+import importlib.util
 from pathlib import Path
-from settings import TMP_MP3_DIR, SUBDECK_NAMES, TRANSLATION_TYPE_KEYS, CSS_FILE, OUTPUT_DIR, CARD_MODEL
-import genanki
 from datetime import datetime
+import genanki
 
 class AnkiService:
     def __init__(self, base_dir: Path):
         self.BASE_DIR = base_dir
+        self.settings = self._load_settings()
+
+    def _load_settings(self):
+        settings_path = self.BASE_DIR / "settings.py"
+        spec = importlib.util.spec_from_file_location("settings", str(settings_path))
+        settings = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(settings)
+        return settings
 
     def create_subdeck(self, data, song_name, subdeck_type, model):
-        subdeck_names = SUBDECK_NAMES
+        subdeck_names = self.settings.SUBDECK_NAMES
         subdeck_title = f"{song_name}::{subdeck_names.get(subdeck_type, subdeck_type)}"
         subdeck_id = abs(hash(subdeck_title)) % (10 ** 10)
         subdeck = genanki.Deck(subdeck_id, subdeck_title)
@@ -50,8 +57,8 @@ class AnkiService:
         direction_deck = genanki.Deck(deck_id, deck_title)
 
         subdecks = []
-        for subdeck_type in TRANSLATION_TYPE_KEYS:
-            subdeck_names = SUBDECK_NAMES
+        for subdeck_type in self.settings.TRANSLATION_TYPE_KEYS:
+            subdeck_names = self.settings.SUBDECK_NAMES
             subdeck_title = f"{deck_title}::{subdeck_names[subdeck_type]}"
             subdeck_id = abs(hash(subdeck_title)) % (10 ** 10)
             subdeck = genanki.Deck(subdeck_id, subdeck_title)
@@ -88,23 +95,24 @@ class AnkiService:
             subdecks.append(subdeck)
         return [direction_deck] + subdecks
 
-    def load_anki_css(self, css_path=CSS_FILE):
+    def load_anki_css(self, css_path=None):
+        css_path = css_path or self.settings.CSS_FILE
         try:
             css_file = self.BASE_DIR / css_path
             with open(css_file, encoding="utf-8") as f:
                 return f.read()
         except Exception as e:
-            print(f"Could not load CSS: {e}")
+            print(f"[load_anki_css] Could not load CSS: {e}")
             return ""
 
     def generate_anki_deck(self, data: dict, deck_title: str, output_dir: str = None):
         """
         Generate an Anki .apkg file with a timestamped filename.
-
         If output_dir is provided, use that folder;
         otherwise fall back to OUTPUT_DIR under BASE_DIR.
         """
-        tmp_anki_dir = Path(output_dir) if output_dir else self.BASE_DIR / OUTPUT_DIR
+        output_dir = output_dir or self.settings.OUTPUT_DIR
+        tmp_anki_dir = self.BASE_DIR / output_dir
         tmp_anki_dir.mkdir(parents=True, exist_ok=True)
 
         print(f"[generate_anki_deck] Using output folder: {tmp_anki_dir.resolve()}")
@@ -113,7 +121,7 @@ class AnkiService:
         main_deck = genanki.Deck(deck_id, deck_title)
         css = self.load_anki_css()
         model = genanki.Model(
-            CARD_MODEL,
+            self.settings.CARD_MODEL,
             'Simple Model',
             fields=[
                 {'name': 'Front'},
@@ -140,11 +148,10 @@ class AnkiService:
         apkg_path = tmp_anki_dir / filename
 
         media_files = []
-        tmp_mp3_dir = self.BASE_DIR / TMP_MP3_DIR
+        tmp_mp3_dir = self.BASE_DIR / self.settings.TMP_MP3_DIR
         if tmp_mp3_dir.exists() and tmp_mp3_dir.is_dir():
             for mp3_file in tmp_mp3_dir.glob("*.mp3"):
                 media_files.append(str(mp3_file.resolve()))
 
         genanki.Package(all_decks, media_files=media_files).write_to_file(str(apkg_path))
         print(f"[generate_anki_deck] Deck saved to: {apkg_path.resolve()}")
-
