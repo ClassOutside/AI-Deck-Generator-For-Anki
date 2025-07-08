@@ -8,7 +8,7 @@ python -m venv .venv
 pip install -r requirements.txt
 
 # Package AI Deck Generator For Anki
-  pyinstaller --clean --onedir --windowed --name "Anki Deck Generator" --icon icons/icon.png `
+  pyinstaller --clean --onedir --windowed --name "AI Deck Generator For Anki" --icon icons/icon.png `
   --add-data "settings.py;." `
   --add-data "icons;icons" `
   --add-data "anki_style.txt;." `
