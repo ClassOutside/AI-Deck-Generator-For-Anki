@@ -2,7 +2,7 @@ import importlib.util
 import subprocess
 import requests
 from pathlib import Path
-
+import os
 from services.popup_service import PopupService
 
 
@@ -28,17 +28,18 @@ class TextToSpeechService:
     def start_voicevox_process(self):
         """
         Launch the VOICEVOX engine helper and return the Popen handle.
-        If the executable does not exist or is invalid, show an error popup and return None.
+        Suppresses console window on Windows.
         """
         exe_path = Path(self.settings.VOICEVOX_PATH)
 
         if not exe_path.exists() or exe_path.is_dir() or exe_path.stat().st_size == 0:
             print(f"[start_voicevox_process] ERROR: Invalid VOICEVOX executable at: {exe_path}")
-            PopupService.show_error_popup(
-                parent=self.parent,
-                title="Voicevox Error",
-                message="Voicevox failed to start.\nPlease check the executable path in settings.py."
-            )
+            if self.settings.TERMS_AGREEMENT_AGREED_TO:
+                PopupService.show_error_popup(
+                    parent=self.parent,
+                    title="Voicevox Error",
+                    message="Voicevox failed to start.\nPlease check the executable path in settings.py."
+                )
             return None
 
         try:
@@ -47,16 +48,27 @@ class TextToSpeechService:
                 "--host", self.settings.API_URL,
                 "--port", str(self.settings.API_PORT),
             ]
-            self.proc = subprocess.Popen(args, stdout=None, stderr=None, shell=False)
+
+            # Add flag to hide console window on Windows
+            startup_flags = subprocess.CREATE_NO_WINDOW if os.name == "nt" else 0
+
+            self.proc = subprocess.Popen(
+                args,
+                stdout=None,
+                stderr=None,
+                shell=False,
+                creationflags=startup_flags
+            )
             print(f"[start_voicevox_process] VOICEVOX started: {exe_path}")
             return self.proc
         except Exception as e:
             print(f"[start_voicevox_process] ERROR: Failed to start VOICEVOX: {e}")
-            PopupService.show_error_popup(
-                parent=self.parent,
-                title="Voicevox Error",
-                message="Voicevox failed to start.\nPlease check the executable path in settings.py."
-            )
+            if self.settings.TERMS_AGREEMENT_AGREED_TO:
+                PopupService.show_error_popup(
+                    parent=self.parent,
+                    title="Voicevox Error",
+                    message="Voicevox failed to start.\nPlease check the executable path in settings.py."
+                )
             return None
 
     def stop_voicevox_process(self):
