@@ -1,10 +1,20 @@
+# Create a virtual environment (originally built with python 3.10.11)
+python -m venv .venv
+
+# Activate virtual environment
+.\.venv\Scripts\Activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Package AI Deck Generator For Anki
   pyinstaller --clean --onedir --windowed --name "Anki Deck Generator" --icon icons/icon.png `
   --add-data "settings.py;." `
   --add-data "icons;icons" `
   --add-data "anki_style.txt;." `
   --add-data "prompt.txt;." `
   --add-data "services;services" `
-  --add-data "READme.txt;." `
+  --add-data "README.md;." `
   --add-data "keys.py;." `
   --add-data "TERMS_AND_CONDITIONS.txt;." `
   main.py
