@@ -1,6 +1,6 @@
 import shutil
 from pathlib import Path
-from settings import TMP_MP3_DIR, OUTPUT_DIR
+from settings import TMP_MP3_DIR
 
 class CleanupService:
     def __init__(self, base_dir: Path):
