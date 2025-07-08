@@ -5,7 +5,7 @@ a = Analysis(
     ['main.py'],
     pathex=[],
     binaries=[],
-    datas=[('settings.py', '.'), ('icons', 'icons'), ('anki_style.txt', '.'), ('prompt.txt', '.'), ('services', 'services'), ('README.md', '.'), ('keys.py', '.'), ('TERMS_AND_CONDITIONS.txt', '.')],
+    datas=[('settings.py', '.'), ('icons', 'icons'), ('anki_style.txt', '.'), ('prompt.txt', '.'), ('services', 'services'), ('README.md', '.'), ('keys.py', '.'), ('TERMS_AND_CONDITIONS.txt', '.'), ('version.py', '.')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},

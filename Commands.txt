@@ -4,6 +4,9 @@ python -m venv .venv
 # Activate virtual environment
 .\.venv\Scripts\Activate
 
+# Update requirements file
+pip freeze > requirements.txt
+
 # Install dependencies
 pip install -r requirements.txt
 
@@ -17,4 +20,5 @@ pip install -r requirements.txt
   --add-data "README.md;." `
   --add-data "keys.py;." `
   --add-data "TERMS_AND_CONDITIONS.txt;." `
+  --add-data "version.py;." `
   main.py

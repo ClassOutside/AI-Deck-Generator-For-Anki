@@ -3,13 +3,14 @@ import subprocess
 import requests
 from pathlib import Path
 import os
+import wave
+import lameenc
 from services.popup_service import PopupService
-
 
 class TextToSpeechService:
     def __init__(self, base_dir: Path, parent=None):
         self.base_dir = base_dir
-        self.tmp_dir = self.base_dir / "tmp_mp3"  # or TMP_MP3_DIR if needed
+        self.tmp_dir = self.base_dir / "tmp_mp3"  # keep same tmp_dir name
         self.tmp_dir.mkdir(parents=True, exist_ok=True)
         self.proc = None
         self.parent = parent  # QWidget for popup parent
@@ -77,12 +78,12 @@ class TextToSpeechService:
             self.proc.wait()
             self.proc = None
 
-    def generate_mp3s(self, data: dict):
+    def generate_wavs(self, data: dict):
         """
-        Generate mp3s using VOICEVOX service based on the given data.
+        Generate WAV files using VOICEVOX service based on the given data.
         """
         settings = self.settings
-        print(f"[generate_mp3s] Generating mp3s in: {self.tmp_dir.resolve()}")
+        print(f"[generate_wavs] Generating WAVs in: {self.tmp_dir.resolve()}")
 
         for key in settings.TRANSLATION_TYPE_KEYS:
             if data and key in data and isinstance(data[key], list):
@@ -97,7 +98,7 @@ class TextToSpeechService:
                     if not text:
                         continue
 
-                    print(f"[generate_mp3s] Synthesizing ({key}): {text}")
+                    print(f"[generate_wavs] Synthesizing ({key}): {text}")
                     try:
                         query_url = f"http://{settings.API_URL.rstrip('/')}:{settings.API_PORT}{settings.AUDIO_QUERY_ENDPOINT}"
                         query_resp = requests.post(
@@ -115,10 +116,53 @@ class TextToSpeechService:
                         )
                         synth_resp.raise_for_status()
 
-                        mp3_path = self.tmp_dir / f"{idx}.mp3"
-                        with open(mp3_path, "wb") as f:
+                        wav_path = self.tmp_dir / f"{idx}.wav"
+                        with open(wav_path, "wb") as f:
                             f.write(synth_resp.content)
-                        print(f"[generate_mp3s] MP3 saved: {mp3_path.resolve()}")
+                        print(f"[generate_wavs] WAV saved: {wav_path.resolve()}")
 
                     except Exception as e:
-                        print(f"[generate_mp3s] Voicevox synthesis failed for line {idx} ({key}): {e}")
+                        print(f"[generate_wavs] Voicevox synthesis failed for line {idx} ({key}): {e}")
+
+    def convert_to_mp3(self):
+        """
+        Convert all .wav files in tmp_dir to .mp3 using lameenc. Reads WAV header to preserve sample rate and channels.
+        """
+        print(f"[convert_to_mp3] Converting WAVs to MP3 in: {self.tmp_dir.resolve()}")
+
+        for wav_file in self.tmp_dir.glob("*.wav"):
+            mp3_file = wav_file.with_suffix('.mp3')
+            try:
+                print(f"[convert_to_mp3] Processing {wav_file.name}")
+                with wave.open(str(wav_file), 'rb') as wf:
+                    sample_rate = wf.getframerate()
+                    channels = wf.getnchannels()
+                    pcm_data = wf.readframes(wf.getnframes())
+
+                # Initialize encoder per file to match WAV properties
+                encoder = lameenc.Encoder()
+                encoder.set_bit_rate(
+                    getattr(self.settings, 'MP3_BITRATE', 128)
+                )
+                encoder.set_in_sample_rate(sample_rate)
+                encoder.set_channels(channels)
+                encoder.set_quality(
+                    getattr(self.settings, 'MP3_QUALITY', 2)
+                )
+
+                mp3_data = encoder.encode(pcm_data)
+                mp3_data += encoder.flush()
+
+                with open(mp3_file, 'wb') as f:
+                    f.write(mp3_data)
+                print(f"[convert_to_mp3] MP3 created: {mp3_file.resolve()}")
+            except Exception as e:
+                print(f"[convert_to_mp3] ERROR encoding {wav_file.name}: {e}")
+
+    def generate_mp3s(self, data: dict):
+        """
+        Orchestrates the creation of WAVs followed by MP3 conversion.
+        """
+        print(f"[generate_mp3s] Starting full generation pipeline in: {self.tmp_dir.resolve()}")
+        self.generate_wavs(data)
+        self.convert_to_mp3()
