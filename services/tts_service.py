@@ -21,7 +21,7 @@ class TextToSpeechService:
         Launch the VOICEVOX engine helper and return the Popen handle.
         If the executable does not exist or is invalid, print an error and return None.
         """
-        exe_path = (self.base_dir / VOICEVOX_PATH).resolve()
+        exe_path = Path(VOICEVOX_PATH)
 
         if not exe_path.exists() or exe_path.is_dir():
             print(f"[start_voicevox_process] ERROR: VOICEVOX executable not found at: {exe_path}")
