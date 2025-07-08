@@ -26,7 +26,7 @@ SPACING                   = 16
 
 # ─── Deck & Card Defaults ─────────────────────────────────────────────────────
 DEFAULT_TITLE             = ""
-SUBDECK_NAMES             = {"L": "lines", "W": "Words", "K": "Kanji"}
+SUBDECK_NAMES             = {"L": "Lines", "W": "Words", "K": "Kanji"}
 CARD_MODEL                = 1607392319
 TRANSLATION_TYPE_KEYS     = ["L", "W", "K"]
 
