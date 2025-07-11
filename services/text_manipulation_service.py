@@ -10,12 +10,19 @@ class TextManipulationService:
 
     def split_lines(self, text: str) -> str:
         """
-        Split text into lines at line-ending punctuation (., 。, !, ！, ?, ？),
-        removing that punctuation and any following spaces.
+        Split text into lines at line-ending punctuation (., 。, !, ！, ?, ？)
+        (removing that punctuation and any following spaces), OR at any
+        existing newline. Returns a clean, stripped list joined by '\n'.
         """
-        intermediate = re.sub(r'[\.。！？\!?]\s*', '\n', text)
-        lines = [line.strip() for line in intermediate.split('\n') if line.strip()]
-        return '\n'.join(lines)
+        # Split on:
+        #  - any of .  。  ！  !  ?  ？  followed by optional spaces
+        #  - OR one or more newline characters
+        parts = re.split(r'[\.。！？!?]\s*|\r?\n+', text)
+
+        # Trim whitespace and drop empty pieces
+        lines = [p.strip() for p in parts if p.strip()]
+
+        return "\n".join(lines)
 
     def extract_unique_lines(self, raw_text: str) -> list[str]:
         """Process raw lines into unique lines (deduplicated, non-empty)."""
@@ -61,7 +68,7 @@ class TextManipulationService:
         # This regex matches any character NOT in the Japanese blocks;
         # we replace those with empty string.
         return re.sub(
-            r"[^\u3000-\u303F\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FFF]+",
+            r"[^\u3000-\u303F\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FFF\n]+",
             "",
             text
         )

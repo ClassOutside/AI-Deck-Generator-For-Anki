@@ -33,7 +33,7 @@ TRANSLATION_TYPE_KEYS     = ["L", "W", "K"]
 # ─── AI/Translation Settings ──────────────────────────────────────────────────
 AI_MODEL                  = "gpt-4o-mini"
 # AI_MODEL                = "gpt-3.5-turbo"
-MAX_TOKENS                = 1024
+MAX_TOKENS                = 16000
 TEMPERATURE               = 0.2
 
 # ─── Debug Flags & Terms ──────────────────────────────────────────────────────
