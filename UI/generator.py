@@ -143,6 +143,7 @@ class GeneratorPage(QWidget):
     def process_input(self):
         raw_text = self.input.toPlainText()
         preprocessed = self.text_processor.split_lines(raw_text)
+        preprocessed = self.text_processor.remove_non_source_language(preprocessed)
         lines = self.text_processor.extract_unique_lines(preprocessed)
 
         pin = self.pin_input.text().strip()

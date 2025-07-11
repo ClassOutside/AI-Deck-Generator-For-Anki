@@ -46,3 +46,22 @@ class TextManipulationService:
             with open(default_input_path, encoding="utf-8") as f:
                 return f.read()
         return ""
+    
+    def remove_non_source_language(self, text: str) -> str:
+        """
+        Strip out any non-Japanese characters, leaving only:
+         - Hiragana     (U+3040–U+309F)
+         - Katakana     (U+30A0–U+30FF)
+         - Kanji         (U+4E00–U+9FFF)
+         - Common Japanese punctuation and spaces
+           (U+3000–U+303F)
+        Everything else (ASCII letters, numbers, Latin punctuation, etc.)
+        is removed.
+        """
+        # This regex matches any character NOT in the Japanese blocks;
+        # we replace those with empty string.
+        return re.sub(
+            r"[^\u3000-\u303F\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FFF]+",
+            "",
+            text
+        )
