@@ -22,7 +22,7 @@
 
 ## Steps to Run Locally
 
-🎥 **Video Tutorial (Coming Soon):** [Watch on YouTube]()
+🎥 **Video Tutorial:** [Watch on YouTube](https://youtu.be/x0Y0N-3Gn3w)
 
 1. **Download and prepare VOICEVOX** 
 
@@ -126,6 +126,7 @@ EX: Japanese to English, Back Side
 - [VOICEVOX](https://voicevox.hiroshiba.jp/) is used as the text-to-speech engine for generating Japanese audio from the processed text.
 - VOICEVOX must be **downloaded and installed separately**.
 - You can download VOICEVOX and find installation instructions at the official site: [VOICEVOX Downloads](https://voicevox.hiroshiba.jp/)
+- OR you can download the VOICEVOX engine directly from the Github release: [VOICEVOX ENGINE RELEASES](https://github.com/VOICEVOX/voicevox_engine/releases)
 
 ## Estimating Costs
 
